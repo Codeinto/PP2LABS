@@ -189,7 +189,7 @@ def main(user_name):
     timed_food = TimedFood(8)
     apples_eaten = 0
     points = 0
-    
+    pause = False
     while True:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -204,8 +204,9 @@ def main(user_name):
                     snake.change_direction('LEFT')
                 elif event.key == pygame.K_RIGHT:
                     snake.change_direction('RIGHT')
-
-        snake.move()
+                pause = True
+        if pause == True:
+            snake.move()
 
         if snake.collide_with_wall() or snake.collide_with_self():
             screen.fill(RED)  
